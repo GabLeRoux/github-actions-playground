@@ -22,3 +22,10 @@ jobs:
       run: |
         python -m this
         git tag
+    - if: github.ref == 'refs/heads/main'
+      run: |
+        git tag -d tag_from_actions || true
+        git push origin :refs/tags/tag_from_actions || true
+
+        git tag tag_from_actions
+        git push origin tag_from_actions
